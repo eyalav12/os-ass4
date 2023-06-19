@@ -503,3 +503,19 @@ sys_pipe(void)
   }
   return 0;
 }
+
+uint64
+sys_seek(void){
+  int fd;
+  argint(0,&fd);
+  if(fd < 0 || fd >= NOFILE)
+    return -1;
+  int offset;
+  argint(1,&offset);
+  int whence;
+  argint(2,&whence);
+  struct proc *p = myproc();
+  struct file *file = p->ofile[fd];
+  return fileseek(file,offset,whence);
+
+}

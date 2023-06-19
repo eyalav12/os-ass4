@@ -9,6 +9,7 @@
 #include "user/user.h"
 #include "kernel/fcntl.h"
 
+
 char *argv[] = { "sh", 0 };
 
 int
@@ -20,6 +21,9 @@ main(void)
     mknod("console", CONSOLE, 0);
     open("console", O_RDWR);
   }
+  mknod("random", CONSOLE, 0);
+ 
+
   dup(0);  // stdout
   dup(0);  // stderr
 
